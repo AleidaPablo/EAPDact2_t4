@@ -1,38 +1,49 @@
-# Proyecto Spring Boot - Actividad 1 Tema 4
+# Actividad 2 - Tema 4: MVC, Thymeleaf, DTOs y Manejo de Parámetros en Spring Boot
 
-**Estudiante:** Evelin Aleida Pablo Delgado 
-**Repositorio:** `EAPDact1_t4`  
+**Estudiante:** Evelin Aleida Pablo Delgado-EAPD  
+**Repositorio:** `EAPDact2_t4`  
+**Puerto Asignado:** `8083`  
 
 ---
 
 ## Descripción del Proyecto
 
-Este proyecto es una aplicación web desarrollada con **Java 21** y **Spring Boot 4**, diseñada para demostrar la configuración del entorno de desarrollo local, el uso de controladores MVC y REST con múltiples endpoints, y su despliegue en un servidor virtual privado (VPS).
+Este proyecto es una continuación independiente de la Actividad 1. Implementa una aplicación web desarrollada con **Spring Boot** utilizando el patrón de diseño **Modelo-Vista-Controlador (MVC)**, el motor de plantillas **Thymeleaf**, transferencia de datos con **DTOs**, lectura de propiedades externas con `@Value`, y manejo de parámetros dinámicos mediante `@RequestParam`, `@PathVariable`, `@ModelAttribute` y `@RequestBody`.
 
 ---
 
-## Tecnologías y Herramientas
+## Tecnologías Utilizadas
 
-* **Lenguaje:** Java 21 (JDK 21.0.10)
-* **Framework:** Spring Boot 4.1.2
-* **Gestor de dependencias:** Maven
-* **Motor de plantillas:** Thymeleaf (`spring-boot-starter-thymeleaf`)
-* **Módulo web:** Spring Web (`spring-boot-starter-web`)
-* **Servidor embebido:** Apache Tomcat (Puerto `8081`)
-* **Infraestructura / VPS:** Ubuntu 24.04 LTS (DigitalOcean)
+* **Java 21 / Spring Boot 3+**
+* **Thymeleaf** (`spring-boot-starter-thymeleaf`)
+* **Maven**
+* **Postman** (Pruebas de endpoints REST POST)
+* **DigitalOcean VPS** (Despliegue en puerto 8083 sin afectar Actividad 1)
+
 ---
 
-La aplicación cuenta con 3 endpoints probados exitosamente:
+## Endpoints y Rutas Disponibles
 
-| Tipo | Endpoint | Controlador | Descripción | 
-| :--- | :--- | :--- | :--- | 
-| **GET** | `/detalles_info` | `@Controller` | Página HTML con el nombre del proyecto y estudiante |
-| **GET** | `/api/detalles_info2` | `@RestController` | Objeto JSON con metadatos del servidor |
-| **GET** | `/api/saludo` | `@RestController` | Objeto JSON con mensaje de saludo |
+### Vistas Web (Thymeleaf - MVC)
+* **Catálogo y Búsqueda por Puesto (`@RequestParam`, `th:each`, `@Value`):**  
+  `http://localhost:8083/detalles_info`
+* **Formulario de Registro (`@ModelAttribute`):**  
+  `http://localhost:8083/formulario`
+
+### Endpoints REST API (JSON)
+* **Detalle Dinámico (`@PathVariable`):**  
+  `http://localhost:8083/api/variable/pagina1/{mensaje}`
+* **Filtro REST (`@RequestParam`):**  
+  `http://localhost:8083/api/parametros/detalle?informacion=Prueba`
+* **Lectura de Propiedades (`@Value`):**  
+  `http://localhost:8083/api/variable/valores`
+* **Creación de Empleado REST (`@RequestBody` - POST):**  
+  `POST http://localhost:8083/api/variable/solicitud`
+
+
 ---
-Enlaces del proyecto:
-- Repositorio en GitHub: https://github.com/AleidaPablo/EAPDact1_t4
 
-- Endpoint 1 (Vista HTML): http://178.128.155.105:8081/detalles_info
-- Endpoint 2 (API JSON): http://178.128.155.105:8081/api/detalles_info2
-- Endpoint 3 (API JSON): http://178.128.155.105:8081/api/saludo
+### Petición POST con Postman (`@RequestBody`)
+Prueba de envío de un objeto JSON mediante el método HTTP POST recibiendo un estado de respuesta `200 OK`.
+
+![Prueba POST en Postman](./capturas/postman.png)
